@@ -1,1 +1,4 @@
-# No external dependencies required for this project.
+streamlit
+pandas
+numpy
+scikit-learn

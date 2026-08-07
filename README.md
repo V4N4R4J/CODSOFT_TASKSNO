@@ -1,59 +1,84 @@
-# Tic-Tac-Toe AI
+# Movie Recommendation System
 
 ## Project Overview
-This project is a terminal-based Tic-Tac-Toe game where a human plays against an unbeatable AI. The AI uses the Minimax algorithm with alpha-beta pruning to evaluate every possible move and choose the optimal response.
+
+This project delivers a content-based movie recommendation system built with Python and Streamlit. It recommends similar movies using genres, keywords, overview text, and popularity information from the TMDB 5000 Movie Dataset.
 
 ## Features
-- Human plays as X and AI plays as O
-- Clean 3x3 board display
-- Input validation for numeric, range, and occupied-cell errors
-- Unbeatable AI using recursive Minimax logic
-- Game-over announcements for win or draw
-- Replay option after each game
 
-## Folder Structure
-```text
-tic_tac_toe_ai/
-├── main.py
-├── game.py
-├── ai.py
-├── utils.py
-├── README.md
-└── requirements.txt
-```
+- Content-based recommendation using TF-IDF and cosine similarity
+- Movie search and selection
+- Top 10 similar movie recommendations
+- Clean Streamlit UI with cards and sidebar
+- Pickle model persistence for fast recommendations
+- Dark-mode friendly styling
+
+## Algorithm Explanation
+
+The system uses Content-Based Filtering:
+
+1. Load the TMDB movie dataset.
+2. Clean missing values and normalize text fields.
+3. Combine genres, keywords, and overview into one feature column.
+4. Vectorize the combined text using TF-IDF.
+5. Compute cosine similarity between movie vectors.
+6. Recommend the top 10 movies most similar to the selected title.
 
 ## Installation
-1. Open a terminal in this project folder.
-2. Run:
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
+
+1. Clone or copy the repository to your local machine.
+2. Create a Python virtual environment:
+
+```bash
+python -m venv venv
+```
+
+3. Activate the environment:
+
+- Windows:
+  ```bash
+  venv\Scripts\activate
+  ```
+- macOS/Linux:
+  ```bash
+  source venv/bin/activate
+  ```
+
+4. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## How to Run
+
+1. Place `movies.csv` inside the `data/` folder.
+2. Train the model once:
+
 ```bash
-python -m tic_tac_toe_ai.main
+python train_model.py
 ```
 
-## How the Minimax Algorithm Works
-Minimax evaluates the board recursively by assuming the human will play optimally and the AI will play optimally. Each move is scored as:
-- `+10` for a winning move
-- `-10` for a losing move
-- `0` for a draw
+3. Launch the Streamlit app:
 
-The AI explores all possible future moves and picks the move that maximizes its chances of winning while minimizing the human's chances.
-
-## Example Gameplay
-```text
-Welcome to Tic-Tac-Toe AI!
-You are X and the AI is O.
-Choose a cell from 1 to 9.
-
- 1 | 2 | 3 
----+---+---
- 4 | 5 | 6 
----+---+---
- 7 | 8 | 9 
-
-Choose a position from 1 to 9: 5
-AI plays at position 1.
+```bash
+python -m streamlit run app.py
 ```
+
+> If `streamlit` is not recognized, use the `python -m streamlit` command.
+
+## Screenshots
+
+- Screenshot placeholders are available in this README for future documentation.
+
+## Future Improvements
+
+- Add a movie poster feature using local poster images.
+- Support content and collaborative hybrid filtering.
+- Add user profiles and rating-based recommendations.
+- Improve search with fuzzy matching.
+- Add pagination to recommendation cards.
+
+## License
+
+This project is released under the MIT License.
